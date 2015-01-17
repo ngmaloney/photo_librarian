@@ -34,7 +34,7 @@ module PhotoLibrarian
       file_dir = file_dest(file_data)
       file_name = file_data.hash + ".jpg"
       FileUtils.mkdir_p(file_dir)
-      FileUtils.cp(file_data.file, File.join(file_dir, file_name))
+      FileUtils.cp(file_data.file, File.join(file_dir, file_name), preserve: true)
     end
 
 
