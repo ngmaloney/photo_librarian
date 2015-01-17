@@ -20,12 +20,13 @@ module PhotoLibrarian
         file_data = FileData.new(file)
 
         if file_data && file_data.jpg?
-          @file_list << file_data
+          @file_list << file
         end
       end
 
       file_list.each do |f|
-        import_file(f)
+        file_data = FileData.new(f)
+        import_file(file_data)
         progress_bar.increment if show_progress
       end
     end
