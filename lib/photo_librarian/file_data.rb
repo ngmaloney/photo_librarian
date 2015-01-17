@@ -31,7 +31,8 @@ module PhotoLibrarian
     def exif_file
       begin
         @exif_file ||= EXIFR::JPEG.new(file)
-      rescue EXIFR::MalformedJPEG
+      rescue => e
+        #TODO better handling, logging and such
         @exif_file = false
       end
     end
