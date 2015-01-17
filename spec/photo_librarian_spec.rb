@@ -18,7 +18,7 @@ describe PhotoLibrarian do
 
   describe "::import!" do
     it "copies the photos to their expected locations" do
-      PhotoLibrarian.import(source_path, destination_path)
+      PhotoLibrarian.import(source_path, destination_path, false)
       File.exists?(destination_path + "/2010/05/3c5ddc299f1523132137d3b0b7139b33.jpg").must_equal true
       File.exists?(destination_path + "/2015/01/100dec19efcf725f983e6d77e5f2bc6c.jpg").must_equal true
     end
@@ -31,6 +31,6 @@ describe PhotoLibrarian do
   end
 
   def breakdown_fixtures
-    #FileUtils.rm_r(base_path)
+    FileUtils.rm_r(base_path)
   end
 end

@@ -7,8 +7,8 @@ module PhotoLibrarian
     PhotoLibrarian.import(source, dest)
   end
 
-  def self.import(source, destination)
-    importer = PhotoLibrarian::Importer.new(source, destination)
+  def self.import(source, destination, show_progress = true)
+    importer = PhotoLibrarian::Importer.new(source, destination, show_progress)
     importer.import!
   end
 end
