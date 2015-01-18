@@ -1,7 +1,6 @@
 require 'exifr'
 require 'digest'
 require 'date'
-require 'pry'
 
 module PhotoLibrarian
   class FileData

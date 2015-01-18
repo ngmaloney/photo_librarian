@@ -1,4 +1,5 @@
 require 'photo_librarian/file_data'
+require 'photo_librarian/spinner'
 require 'find'
 require 'ruby-progressbar'
 
@@ -14,13 +15,16 @@ module PhotoLibrarian
     end
 
     def import!
-      Find.find(source).each do |file|
-        next unless File.file?(file)
+      puts "Creating file list"
+      PhotoLibrarian::Spinner.show do
+        Find.find(source).each do |file|
+          next unless File.file?(file)
 
-        file_data = FileData.new(file)
+          file_data = FileData.new(file)
 
-        if file_data && file_data.jpg?
-          @file_list << file
+          if file_data && file_data.jpg?
+            @file_list << file
+          end
         end
       end
 
