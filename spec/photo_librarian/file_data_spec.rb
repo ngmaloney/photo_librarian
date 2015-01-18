@@ -30,7 +30,7 @@ describe PhotoLibrarian do
   describe "date" do
     describe "with exif date" do
       it "returns a date" do
-        file_data.date.must_equal Time.parse("2010-05-04 10:44:57 -0400")
+        file_data.date.must_equal Date.parse("2010-05-04 10:44:57 -0400")
       end
     end
 
@@ -39,7 +39,7 @@ describe PhotoLibrarian do
       let(:valid_image) { fixtures_path + "2.jpg" }
 
       it "returns a date" do
-        file_data.date.must_equal Time.parse("2011-01-27 10:54:26 -0500")
+        file_data.date.must_equal Date.parse("2011-01-27 10:54:26 -0500")
       end
     end
   end

@@ -1,5 +1,6 @@
 require 'exifr'
 require 'digest'
+require 'date'
 require 'pry'
 
 module PhotoLibrarian
@@ -11,7 +12,7 @@ module PhotoLibrarian
     end
 
     def date
-      exif_file.date_time || File.mtime(file)
+      Date.parse("#{exif_file.date_time || File.mtime(file)}")
     end
 
     def hash
