@@ -1,6 +1,8 @@
 # PhotoLibrarian
 
-TODO: Write a gem description
+I needed a simple way to organize a decade worth of photos that were spread across numerous directories. The files had inconsistent naming conventions and were duplicated in several of the folders. Ideally, I wanted them organized by month and year and have duplicates removed. I found a few tools that almost did this but not exactly. I wrote PhotoLibrarian as a quick hack to solve the problem.
+
+Photo librarian is a simple command line utility that organizes photos. It copies photos into a destination directory organized by year then month. By default, the command will use the photos EXIF data for determining date, if there isn't an EXIF date present it will default to the file's creation date. Files will be renamed according to their MD5 hash value. Duplicate files are not copied. The source image directory is not altered.
 
 ## Installation
 
@@ -20,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+librarian /path/to/images  /path/to/destination
 
 ## Contributing
 
