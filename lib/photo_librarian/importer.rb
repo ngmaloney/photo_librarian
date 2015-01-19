@@ -2,6 +2,7 @@ require 'photo_librarian/file_data'
 require 'photo_librarian/spinner'
 require 'find'
 require 'ruby-progressbar'
+require 'fileutils'
 
 module PhotoLibrarian
   class Importer
@@ -44,6 +45,7 @@ module PhotoLibrarian
         FileUtils.cp(file_data.file, File.join(file_dir, file_name), preserve: true)
       rescue => e
         #TODO Log this
+        puts e.message
       end
     end
 
