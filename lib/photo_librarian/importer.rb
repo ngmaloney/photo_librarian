@@ -16,8 +16,11 @@ module PhotoLibrarian
     end
 
     def import!
-      puts "Creating file list"
-      PhotoLibrarian::Spinner.show { build_file_list }
+      if show_progress
+        PhotoLibrarian::Spinner.show { build_file_list }
+      else
+        build_file_list
+      end
       import_files
     end
 

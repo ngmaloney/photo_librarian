@@ -1,10 +1,11 @@
 module PhotoLibrarian
   class Spinner
-    def self.show(fps=10)
+    def self.show(fps=10, title="Generating file list ")
       chars = %w[| / - \\]
       delay = 1.0/fps
       iter = 0
       spinner = Thread.new do
+        print title
         while iter do  # Keep spinning until told otherwise
           print chars[(iter+=1) % chars.length]
           sleep delay
