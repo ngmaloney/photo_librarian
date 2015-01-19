@@ -17,18 +17,21 @@ module PhotoLibrarian
 
     def import!
       puts "Creating file list"
-      PhotoLibrarian::Spinner.show do
-        Find.find(source).each do |file|
-          next unless File.file?(file)
+      PhotoLibrarian::Spinner.show { build_file_list }
+      import_files
+    end
 
-          file_data = FileData.new(file)
-
-          if file_data && file_data.jpg?
-            @file_list << file
-          end
+    def build_file_list
+      Find.find(source).each do |file|
+        next unless File.file?(file)
+        file_data = FileData.new(file)
+        if file_data && file_data.jpg?
+          @file_list << file
         end
       end
+    end
 
+    def import_files
       file_list.each do |f|
         file_data = FileData.new(f)
         import_file(file_data)
@@ -36,16 +39,15 @@ module PhotoLibrarian
       end
     end
 
-    #TODO: Add logging
     def import_file(file_data)
       begin
         file_dir = file_dest(file_data)
         file_name = file_data.hash + ".jpg"
+        file_path = File.join(file_dir, file_name)
         FileUtils.mkdir_p(file_dir)
-        FileUtils.cp(file_data.file, File.join(file_dir, file_name), preserve: true)
+        FileUtils.cp(file_data.file, file_path, preserve: true) unless File.exists?(file_path)
       rescue => e
         #TODO Log this
-        puts e.message
       end
     end
 
